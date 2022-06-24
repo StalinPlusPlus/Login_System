@@ -34,7 +34,7 @@ int main()
 			file.open(file_name, fstream::out | fstream::app | fstream::in);
 			if (!file.is_open())
 			{
-				cout << "Неверный логин" << endl;
+				cout << "Неверный логин!" << endl;
 			}
 			else
 			{
