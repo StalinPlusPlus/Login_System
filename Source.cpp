@@ -10,6 +10,7 @@ int main()
 	fstream file;
 	int menu_choice = 10;
 	string login_register, password_register, file_name, password_login, login_login, login_buf, password_buf;
+	char file_nameChar[100];
 	//Цикл меню
 	while (menu_choice != 0)
 	{
@@ -34,10 +35,18 @@ int main()
 			file.open(file_name, fstream::out | fstream::app | fstream::in);
 			if (!file.is_open())
 			{
-				cout << "Неверный логин" << endl;
+				cout << "Ошибка открытия файла!" << endl;
 			}
 			else
 			{
+				strcpy(file_nameChar, file_name.c_str());
+				if (fopen(file_nameChar, "r"))
+				{
+					cout << "Пользователь с таким логином уже существует!";
+					file.close();
+					break;
+				}
+
 				getline(file, login_buf);
 				getline(file, password_buf);
 				if (password_buf == password_login)
